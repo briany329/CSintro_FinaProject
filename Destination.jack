@@ -1,0 +1,37 @@
+class Destination{
+	field int x, y;
+	field int memAddress;
+
+	constructor Destination new (int xlocation, int ylocation) {
+		let x = xlocation;
+		let y = ylocation;
+		do draw();
+		return this;
+	}
+
+	method void dispose() {
+    	do Memory.deAlloc(this);
+    	return;
+   	}
+
+   	method void draw() {
+		let memAddress = 16384+(y*512)+x;
+		do Memory.poke(memAddress+0, 384);
+		do Memory.poke(memAddress+32, 384);
+		do Memory.poke(memAddress+64, 576);
+		do Memory.poke(memAddress+96, 576);
+		do Memory.poke(memAddress+128, 1056);
+		do Memory.poke(memAddress+160, 2064);
+		do Memory.poke(memAddress+192, 12300);
+		do Memory.poke(memAddress+224, -16381);
+		do Memory.poke(memAddress+256, -16381);
+		do Memory.poke(memAddress+288, 12300);
+		do Memory.poke(memAddress+320, 2064);
+		do Memory.poke(memAddress+352, 1056);
+		do Memory.poke(memAddress+384, 576);
+		do Memory.poke(memAddress+416, 576);
+		do Memory.poke(memAddress+448, 384);
+		do Memory.poke(memAddress+480, 384);
+		return;
+	}
+}

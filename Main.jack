@@ -1,0 +1,18 @@
+class Main {
+    function void main() {
+		var Game game1, game2, game3;
+    	let game1 = Game.new(1, 4, 4);
+		do Map.map1();
+    	do game1.run();
+    	do game1.dispose();
+    	let game2 = Game.new(2, 5, 3);
+		do Map.map2();
+    	do game2.run();
+    	do game2.dispose();
+    	let game3 = Game.new(3, 1, 2);
+		do Map.map3();
+    	do game3.run();
+    	do game3.dispose();
+    	return;
+    }
+}

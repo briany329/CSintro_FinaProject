@@ -1,0 +1,153 @@
+class Player{
+	field int x, y;
+	field int memAddress;
+	field int movecheck;
+	field int level;		//the level of the game;
+	constructor Player new (int nowlevel, int xlocation, int ylocation) {
+		let level = nowlevel;	
+		let x = xlocation;
+		let y = ylocation;
+		do draw();
+		return this;
+	}
+
+	method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   	}
+
+	method void draw() {
+		let memAddress = 16384+(y*512)+x;
+		do Memory.poke(memAddress+0  , 448 );
+		do Memory.poke(memAddress+32 , 544 );
+		do Memory.poke(memAddress+64 , 544 );
+		do Memory.poke(memAddress+96 , 544 );
+		do Memory.poke(memAddress+128, 448 );
+		do Memory.poke(memAddress+160, 128 );
+		do Memory.poke(memAddress+192, 8188);
+		do Memory.poke(memAddress+224, 128 );
+		do Memory.poke(memAddress+256, 128 );
+		do Memory.poke(memAddress+288, 128 );
+		do Memory.poke(memAddress+320, 128 );
+		do Memory.poke(memAddress+352, 320 );
+		do Memory.poke(memAddress+384, 544 );
+		do Memory.poke(memAddress+416, 1040);
+		do Memory.poke(memAddress+448, 2056);
+		do Memory.poke(memAddress+480, 4100);
+		return;
+	}
+
+	method void erase(){
+		let memAddress = 16384+(y*512)+x;
+		do Memory.poke(memAddress+0  , 0);
+		do Memory.poke(memAddress+32 , 0);
+		do Memory.poke(memAddress+64 , 0);
+		do Memory.poke(memAddress+96 , 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 0);
+		do Memory.poke(memAddress+192, 0);
+		do Memory.poke(memAddress+224, 0);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+		return;
+	}
+
+	method void moveUp() {
+		let movecheck = Check.movecheck(x, y, x, y-1);
+		// can't move
+		if(movecheck = 0){
+			return;
+		}
+		// push box
+		if(movecheck > 1){ do Draw.drawBox(x, y-2); }
+		// move player
+        do erase();
+        let y = y - 1;
+        do draw();
+		//recover the dest
+		do recover();
+    	return;
+    }
+
+    method void moveDown() {
+    	let movecheck = Check.movecheck(x, y, x, y+1);
+    	// can't move
+		if(movecheck = 0){
+			return;
+		}
+		// push box
+		if(movecheck > 1){ do Draw.drawBox(x, y+2); }
+		// move player
+        do erase();
+        let y = y + 1;
+        do draw();
+		//recover the dest
+		do recover();
+    	return;
+    }
+
+    method void moveLeft() {
+    	let movecheck = Check.movecheck(x, y, x-1, y);
+    	// can't move
+		if(movecheck = 0){
+			return;
+		}
+		// push box
+		if(movecheck > 1){ do Draw.drawBox(x-2, y); }
+		// move player
+        do erase();
+        let x = x - 1;
+        do draw();
+		//recover the dest
+		do recover();
+    	return;
+    }
+
+    method void moveRight() {
+    	let movecheck = Check.movecheck(x, y, x+1, y);
+    	// can't move
+		if(movecheck = 0){
+			return;
+		}
+		// push box
+		if(movecheck > 1){ do Draw.drawBox(x+2, y); }
+		// move player
+        do erase();
+        let x = x + 1;
+        do draw();
+		//recover the dest
+		do recover();
+    	return;
+    }
+
+	/** Check if a dest should recover */
+    method void check_recover(int x, int y){
+        if(Memory.peek(16384 + (y*512) + x + 64) = 0){
+           do Draw.drawDest(x, y);
+        }
+        return;
+    }
+    method void recover(){
+        if(level = 1){
+            do check_recover(1, 4);
+            do check_recover(3, 1);
+            do check_recover(4, 6);
+            do check_recover(6, 3);
+    	}
+    	if(level = 2){
+    		do check_recover(2, 2);
+        	do check_recover(4, 2);
+    	}
+    	if(level = 3){
+    	    do check_recover(1, 1);
+    	    do check_recover(4, 5);
+    	}
+		return;
+    }
+}

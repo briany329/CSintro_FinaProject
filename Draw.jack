@@ -1,0 +1,155 @@
+class Draw{
+    function void drawBox(int x, int y){
+        var int memAddress;
+        let memAddress = 16384+(y*512)+x;
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -8185);
+		do Memory.poke(memAddress+96, -12277);
+		do Memory.poke(memAddress+128, -14317);
+		do Memory.poke(memAddress+160, -15325);
+		do Memory.poke(memAddress+192, -15805);
+		do Memory.poke(memAddress+224, -15997);
+		do Memory.poke(memAddress+256, -15997);
+		do Memory.poke(memAddress+288, -15805);
+		do Memory.poke(memAddress+320, -15325);
+		do Memory.poke(memAddress+352, -14317);
+		do Memory.poke(memAddress+384, -12277);
+		do Memory.poke(memAddress+416, -8185);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		return;
+    }
+	function void drawWall(int x, int y){
+		var int memAddress;
+		let memAddress = 16384+(y*512)+x;
+		do Memory.poke(memAddress+0  , -1);
+		do Memory.poke(memAddress+32 , -1);
+		do Memory.poke(memAddress+64 , -1);
+		do Memory.poke(memAddress+96 , -1);
+		do Memory.poke(memAddress+128, -1);
+		do Memory.poke(memAddress+160, -1);
+		do Memory.poke(memAddress+192, -1);
+		do Memory.poke(memAddress+224, -1);
+		do Memory.poke(memAddress+256, -1);
+		do Memory.poke(memAddress+288, -1);
+		do Memory.poke(memAddress+320, -1);
+		do Memory.poke(memAddress+352, -1);
+		do Memory.poke(memAddress+384, -1);
+		do Memory.poke(memAddress+416, -1);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		return;
+	}
+   	function void drawDest(int x, int y) {
+		var int memAddress;
+		let memAddress = 16384+(y*512)+x;
+		do Memory.poke(memAddress+0, 384);
+		do Memory.poke(memAddress+32, 384);
+		do Memory.poke(memAddress+64, 576);
+		do Memory.poke(memAddress+96, 576);
+		do Memory.poke(memAddress+128, 1056);
+		do Memory.poke(memAddress+160, 2064);
+		do Memory.poke(memAddress+192, 12300);
+		do Memory.poke(memAddress+224, -16381);
+		do Memory.poke(memAddress+256, -16381);
+		do Memory.poke(memAddress+288, 12300);
+		do Memory.poke(memAddress+320, 2064);
+		do Memory.poke(memAddress+352, 1056);
+		do Memory.poke(memAddress+384, 576);
+		do Memory.poke(memAddress+416, 576);
+		do Memory.poke(memAddress+448, 384);
+		do Memory.poke(memAddress+480, 384);
+		return;
+	}
+	function void drawMap1(){		
+    	do Draw.drawBox(3, 3);
+    	do Draw.drawBox(3, 4);
+    	do Draw.drawBox(4, 5);
+    	do Draw.drawBox(5, 3);
+    	do Draw.drawWall(0, 3);
+    	do Draw.drawWall(0, 4);
+    	do Draw.drawWall(0, 5);
+    	do Draw.drawWall(1, 3);
+    	do Draw.drawWall(1, 5);
+    	do Draw.drawWall(2, 0);
+    	do Draw.drawWall(2, 1);
+    	do Draw.drawWall(2, 2);
+    	do Draw.drawWall(2, 3);
+    	do Draw.drawWall(2, 5);
+    	do Draw.drawWall(3, 0);
+    	do Draw.drawWall(3, 5);
+    	do Draw.drawWall(3, 6);
+    	do Draw.drawWall(3, 7);
+    	do Draw.drawWall(4, 0);
+    	do Draw.drawWall(4, 1);
+    	do Draw.drawWall(4, 2);
+    	do Draw.drawWall(4, 7);
+    	do Draw.drawWall(5, 2);
+    	do Draw.drawWall(5, 4);
+    	do Draw.drawWall(5, 5);
+    	do Draw.drawWall(5, 6);
+    	do Draw.drawWall(5, 7);
+    	do Draw.drawWall(6, 2);
+    	do Draw.drawWall(6, 4);
+    	do Draw.drawWall(7, 2);
+    	do Draw.drawWall(7, 3);
+    	do Draw.drawWall(7, 4);
+		return;
+	}
+	function void drawMap2(){
+		do Draw.drawBox(2,3);
+		do Draw.drawBox(3,3);
+		do Draw.drawWall(0,0);
+		do Draw.drawWall(0,1);
+		do Draw.drawWall(0,2);
+		do Draw.drawWall(0,3);
+		do Draw.drawWall(0,4);
+		do Draw.drawWall(1,0);
+		do Draw.drawWall(1,4);
+		do Draw.drawWall(1,5);
+		do Draw.drawWall(2,0);
+		do Draw.drawWall(2,5);
+		do Draw.drawWall(3,0);
+		do Draw.drawWall(3,1);
+		do Draw.drawWall(3,5);
+		do Draw.drawWall(4,1);
+		do Draw.drawWall(4,3);
+		do Draw.drawWall(4,5);
+		do Draw.drawWall(5,1);
+		do Draw.drawWall(5,5);
+		do Draw.drawWall(6,1);
+		do Draw.drawWall(6,2);
+		do Draw.drawWall(6,3);
+		do Draw.drawWall(6,4);
+		do Draw.drawWall(6,5);
+		return;
+	}
+	function void drawMap3(){
+		do Draw.drawBox(2,2);
+		do Draw.drawBox(3,2);
+		do Draw.drawWall(0,0);
+		do Draw.drawWall(0,1);
+		do Draw.drawWall(0,2);
+		do Draw.drawWall(0,3);
+		do Draw.drawWall(1,3);
+		do Draw.drawWall(1,0);
+		do Draw.drawWall(1,4);
+		do Draw.drawWall(2,5);
+		do Draw.drawWall(2,0);
+		do Draw.drawWall(2,4);
+		do Draw.drawWall(3,0);
+		do Draw.drawWall(3,6);
+		do Draw.drawWall(3,5);
+		do Draw.drawWall(4,1);
+		do Draw.drawWall(4,0);
+		do Draw.drawWall(4,6);
+		do Draw.drawWall(5,1);
+		do Draw.drawWall(5,5);
+		do Draw.drawWall(5,3);
+		do Draw.drawWall(5,2);
+		do Draw.drawWall(5,6);
+		do Draw.drawWall(5,4);
+		return;
+	}
+}

@@ -1,0 +1,33 @@
+class Check{    
+	function int movecheck(int x1, int y1, int x2, int y2){
+		var int idx; // next 2 space's x location
+		var int idy; // next 2 space's y location
+		var int next, next2;
+		let idx=(x2*2)-x1;
+		let idy=(y2*2)-y1;
+		// address of next space and next 2 space
+		let next = 16384 + (y2*512) + x2;
+		let next2 = 16384 + (idy*512) + idx;
+		// can't move
+		if(Memory.peek(next+64) = -1){
+			return 0;
+		}
+		// there is nothing in the next space
+		if(Memory.peek(next)=0){
+			return 1;
+		}
+        // there is a dest int the next space
+        if(Memory.peek(next) = 384){
+            return -1;
+        }
+		// there is nothing in the next two space
+		if(Memory.peek(next+64) = -8185){
+			if(Memory.peek(next2) = 0){return 2;}
+			if(Memory.peek(next2) = 384){
+			//	do score();
+				return 3;
+			}
+		}
+		return 0;
+	}
+}
