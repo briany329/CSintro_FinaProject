@@ -3,7 +3,7 @@ Sokoban
 
 與 芒果貓 的code相比，大致上修改的地方為:
 
-1. 新增關卡
+1. 新增關卡：
 Main.jack內以game1至game3分別代表第1至3關，Main依序呼叫1~3關。
 Game.new後面第一個參數為level。
 Game.new會呼叫Player.new，除了坐標外，也把level當參數傳入了。
@@ -16,13 +16,13 @@ class Map內每張地圖都是一個function，方便class Main呼叫。
 class Draw底下寫了各種函式，除了基本的Box、Wall、Player外，也把地圖刻上去了。    
 /**注意 : Box跟Wall原本是各做成一個物件，但實際上在這做法裡面用不到這兩個物件的功能，於是改成直接畫上去而已，只是圖形，至於destination其實似乎也行，不過不確定**/
 
-2. 建好reset與judge 
+2. 建好reset與judge： 
 按R會reset當前關卡，按J會判斷是否成功，若為是則進到下一關，Q鍵暫時被我註解掉了。
 reset與judge都寫在class Game底下，
 reset做法為先將畫面清空，再依照level重新呼叫Map.map1()，而player直接construct新的。
 judge做法為依照level去看dest的位置是否被Box蓋過。
 
-3. 修改人無法走到destination上面以及destination消失問題
+3. 修改人無法走到destination上面以及destination消失問題：
 關於人無法移動到destination上面原因是movecheck原先並未判斷到人的下一格是dest的情況，所以最後會return 0，
 故新增
         // there is a dest int the next space
