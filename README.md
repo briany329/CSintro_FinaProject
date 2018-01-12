@@ -4,7 +4,7 @@ Sokoban
 與 芒果貓 的code相比，大致上修改的地方為:
 
 1. 新增關卡，亦可再新增
-Main.jack內以game1~3 分別代表第1~3關
+Main.jack內以game1至game3 分別代表第1至3關
 Main依序呼叫1~3關
 舉例:let game1 = Game.new(1, 4, 4);
 Game.new後面第一個參數為level /**第一關為1，第二關為2，以此類推，把level當參數是為了方便判斷，
